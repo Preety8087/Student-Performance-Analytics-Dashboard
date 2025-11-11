@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Performance Analytics</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      position: relative;
+    }
+    .sidebar {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 300px;
+      height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+      z-index: 1;
+    }
+    h1 {
+      margin: 0 0 20px 0;
+      font-size: 2em;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      text-align: center;
+      color: white;
+    }
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      width: 100%;
+    }
+    button:hover {
+      background-color: #45a049;
+      transform: translateY(-2px);
+    }
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: calc(100vw - 300px);
+      height: 100vh;
+      border: none;
+    }
+    @media (max-width: 768px) {
+      .sidebar { width: 250px; }
+      h1 { font-size: 1.5em; }
+      button { padding: 10px 20px; font-size: 14px; }
+      iframe {
+        width: calc(100vw - 250px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h1>Student Performance Analytics</h1>
+    <div class="button-container">
+      <button onclick="showDashboard(1)">Student Overview</button>
+      <button onclick="showDashboard(2)">Academic Insights</button>
+      <button onclick="showDashboard(3)">Parental Impact</button>
+      <button onclick="showDashboard(4)">Grade Distribution</button>
+      <button onclick="showDashboard(5)">Performance Metrics</button>
+    </div>
+  </div>
+  <iframe id="tableauFrame"
+    src="https://public.tableau.com/views/StudentPerformanceAnalytics/Dashboard1?:showVizHome=no&:embed=true">
+  </iframe>
+
+  <script>
+    function showDashboard(n) {
+      const frame = document.getElementById("tableauFrame");
+      const urls = [
+        "https://public.tableau.com/views/StudentPerformanceAnalytics/Dashboard1?:showVizHome=no&:embed=true",
+        "https://public.tableau.com/views/StudentPerformanceAnalytics/Dashboard2?:showVizHome=no&:embed=true",
+        "https://public.tableau.com/views/StudentPerformanceAnalytics/Dashboard3?:showVizHome=no&:embed=true",
+        "https://public.tableau.com/views/StudentPerformanceAnalytics/Dashboard1?:showVizHome=no&:embed=true", // Placeholder for Grade Distribution
+        "https://public.tableau.com/views/StudentPerformanceAnalytics/Dashboard2?:showVizHome=no&:embed=true"  // Placeholder for Performance Metrics
+      ];
+      frame.src = urls[n - 1];
+    }
+  </script>
+</body>
+</html>
